@@ -1,5 +1,5 @@
 from models.category import Category
-
+from controllers.quizController import QuizController
 
 def get_all_categories():
     return Category.read()
@@ -24,7 +24,7 @@ def save_category(category_name, id_category=None):
 def delete_category(id_category):
     category = get_category_with_id(id_category)
     if category is not None:
-        quizzes = quizController.get_quizzes_by_category(id_category)
+        quizzes = QuizController.get_quizzes_by_category(id_category)
         for quiz in quizzes:
-            quizController.delete_quiz(quiz.id_quiz)
+            QuizController.delete_quiz(quiz.id_quiz)
         category.deleteById(id_category)
